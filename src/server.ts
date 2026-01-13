@@ -1,11 +1,11 @@
-require('dotenv').config();
-const express = require('express');
-require('./bot'); // initialize bot
+import 'dotenv/config';
+import express, { Request, Response } from 'express';
+import './bot'; // initialize bot
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.get('/health', (_req, res) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.json({ status: 'ok' });
 });
 
