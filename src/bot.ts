@@ -9,8 +9,8 @@ if (!token) {
 // Polling = simplest way to start
 const bot = new TelegramBot(token, { polling: true });
 
-// /start command
-bot.onText(/\/start/, (msg: TelegramBot.Message) => {
+// Respond to any message with the same response
+bot.on('message', (msg: TelegramBot.Message) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, 'Bot is running xdddd.');
 });
