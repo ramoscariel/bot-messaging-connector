@@ -3,8 +3,7 @@ import { AnalysisResponse } from '../types/analyst.types';
 import {
   IncomingMessage,
   OutgoingResponse,
-  MessagingPlatform,
-  ImageAttachment
+  MessagingPlatform
 } from './interfaces';
 
 export class MessageProcessor {
@@ -50,14 +49,8 @@ export class MessageProcessor {
   }
 
   private convertAnalysisResponse(analysis: AnalysisResponse): OutgoingResponse {
-    const images: ImageAttachment[] = analysis.charts.map(chart => ({
-      data: Buffer.from(chart.image_base64, 'base64'),
-      caption: chart.title
-    }));
-
     return {
-      text: analysis.explanation,
-      images
+      text: analysis.analysis
     };
   }
 

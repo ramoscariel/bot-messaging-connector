@@ -1,19 +1,28 @@
 export interface AnalysisRequest {
   prompt: string;
   exclude_tables?: string[] | null;
-  generate_charts?: boolean | null;
 }
 
-export interface ChartResponse {
-  type: string;
-  title: string;
-  image_base64: string;
+export interface QueryResult {
+  query_id: string;
+  purpose: string;
+  sql_query: string;
+  data: Record<string, unknown>[];
+  row_count: number;
+  error?: string;
+}
+
+export interface AnalysisMetadata {
+  total_queries: number;
+  successful_queries: number;
+  total_rows: number;
+  execution_time_ms: number;
 }
 
 export interface AnalysisResponse {
-  explanation: string;
-  sql_query: string;
-  charts: ChartResponse[];
+  analysis: string;
+  queries: QueryResult[];
+  metadata: AnalysisMetadata;
 }
 
 export interface AnalysisErrorResponse {

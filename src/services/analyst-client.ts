@@ -26,7 +26,6 @@ export class AnalystClient {
     const requestBody: AnalysisRequest = {
       prompt,
       exclude_tables: null,
-      generate_charts: null,
     };
 
     try {
@@ -45,8 +44,8 @@ export class AnalystClient {
       );
 
       console.log('Analysis completed successfully');
-      console.log(`- Explanation length: ${response.data.explanation.length} chars`);
-      console.log(`- Charts returned: ${response.data.charts.length}`);
+      console.log(`- Analysis length: ${response.data.analysis.length} chars`);
+      console.log(`- Queries executed: ${response.data.metadata.successful_queries}/${response.data.metadata.total_queries}`);
 
       return response.data;
     } catch (error) {
